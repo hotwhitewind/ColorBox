@@ -116,23 +116,25 @@ namespace ColorBox
                     {
                         this.ColorBox.GradientsAllInit.Add(new GradientStop(grad.Color, grad.Offset));
                     }
+                    initMinGrOff = this.ColorBox.GradientsInit.Min((c) => c.Offset);
+                    initMaxGrOff = this.ColorBox.GradientsInit.Max((c) => c.Offset);
                 }
                 if (selectedGr.Equals(minGr) || selectedGr.Equals(maxGr))
                 {
                     for (int i = 0; i < gradients.Count; i++)
                     {
-                        if (offset > 0 && !gradients[i].Equals(minGr))
+                        if (offset != 0 && !gradients[i].Equals(minGr) && !gradients[i].Equals(maxGr))
                         {
                             gradients[i].Offset = minGrOff +
                                                   (ColorBox.GradientsAllInit[i].Offset - initMinGrOff)*(maxGrOff - minGrOff)/
                                                   (initMaxGrOff - initMinGrOff);
                         }
-                        if (offset < 0 && !gradients[i].Equals(maxGr))
-                        {
-                            gradients[i].Offset = minGrOff +
-                                                  (ColorBox.GradientsAllInit[i].Offset - initMinGrOff) * (maxGrOff - minGrOff) /
-                                                  (initMaxGrOff - initMinGrOff);
-                        }
+                        //if (offset < 0 && !gradients[i].Equals(maxGr))
+                        //{
+                        //    gradients[i].Offset = minGrOff +
+                        //                          (ColorBox.GradientsAllInit[i].Offset - initMinGrOff) * (maxGrOff - minGrOff) /
+                        //                          (initMaxGrOff - initMinGrOff);
+                        //}
                     }
                 }
                 //if (selectedGr.Equals(minGr))
@@ -240,14 +242,14 @@ namespace ColorBox
             {
                 startPoint = e.GetPosition(this);
             }
-            initMinGrOff = this.ColorBox.GradientsInit.Min((c) => c.Offset);
-            initMaxGrOff = this.ColorBox.GradientsInit.Max((c) => c.Offset);
+            //initMinGrOff = this.ColorBox.GradientsInit.Min((c) => c.Offset);
+            //initMaxGrOff = this.ColorBox.GradientsInit.Max((c) => c.Offset);
 
-            this.ColorBox.GradientsAllInit = new ObservableCollection<GradientStop>();
-            foreach (var grad in ColorBox.GradientsAll)
-            {
-                this.ColorBox.GradientsAllInit.Add(new GradientStop(grad.Color, grad.Offset));
-            }
+            //this.ColorBox.GradientsAllInit = new ObservableCollection<GradientStop>();
+            //foreach (var grad in ColorBox.GradientsAll)
+            //{
+            //    this.ColorBox.GradientsAllInit.Add(new GradientStop(grad.Color, grad.Offset));
+            //}
 
             if (this.ColorBox != null)
             {

@@ -35,6 +35,7 @@ namespace ColorBox
         static ColorBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof (ColorBox), new FrameworkPropertyMetadata(typeof (ColorBox)));
+
         }
 
         public static RoutedCommand RemoveGradientStop = new RoutedCommand();
@@ -71,21 +72,19 @@ namespace ColorBox
                 Gradients = new ObservableCollection<GradientStop>();
                 //var minOffset = lgb.GradientStops.Min(c => c.Offset);
                 //var maxOffset = lgb.GradientStops.Max(c => c.Offset);
-                
                 //GradientsInit.Add(lgb.GradientStops.First(c => c.Offset == minOffset));
                 //GradientsInit.Add(lgb.GradientStops.First(c => c.Offset == maxOffset));
-                GradientsInit.Add(new GradientStop(Colors.Transparent, 0));
-                GradientsInit.Add(new GradientStop(Colors.Transparent, 1));
+
+
+                GradientsInit.Add(new GradientStop(LowInitGradient.Color, LowInitGradient.Offset));
+                GradientsInit.Add(new GradientStop(HighInitGradient.Color, HighInitGradient.Offset));
                 //для вычитания границ из общего градиента
                 //GradientsAll.Remove(lgb.GradientStops.First(c => c.Offset == minOffset));
                 //GradientsAll.Remove(lgb.GradientStops.First(c => c.Offset == maxOffset));
                 ///////////////////////////////////////////
                 foreach (var grad in lgb.GradientStops)
                 {
-                    //if (grad.Offset != minOffset && grad.Offset != maxOffset)
-                    //{
                     Gradients.Add(grad);
-                    //}
                 }
                 _BrushTypeSetInternally = false;
             }
@@ -100,8 +99,6 @@ namespace ColorBox
                     {
                         this.GradientsAll = new ObservableCollection<GradientStop>();
                         //вычитание границ из общего градиента
-                        //this.GradientsAll.Add(new GradientStop(Colors.Black, 0));
-                        //this.GradientsAll.Add(new GradientStop(Colors.White, 1));
                         this.GradientsAll.Add(new GradientStop(Colors.Green, 0.5));
                         //////////////////////////////////////////////////////////
                         this.GradientsInit = new ObservableCollection<GradientStop>();
@@ -117,6 +114,19 @@ namespace ColorBox
                 }
             }
 
+            var gradients = this.GradientsAll;
+            var minGrOff = this.GradientsInit.Min((c) => c.Offset);
+            var maxGrOff = this.GradientsInit.Max((c) => c.Offset);
+
+            var initMinGrOff = GradientsAll.Min((c) => c.Offset);
+            var initMaxGrOff = GradientsAll.Max((c) => c.Offset);
+
+            for (int i = 0; i < gradients.Count; i++)
+            {
+                gradients[i].Offset = minGrOff +
+                                      (gradients[i].Offset - initMinGrOff) * (maxGrOff - minGrOff) /
+                                      (initMaxGrOff - initMinGrOff);
+            }
 
             SetBrush();
         }
@@ -464,16 +474,6 @@ namespace ColorBox
         internal static readonly DependencyProperty GradientsProperty =
             DependencyProperty.Register("Gradients", typeof(ObservableCollection<GradientStop>), typeof(ColorBox));
 
-
-        //internal ObservableCollection<GradientStop> GradientsAll
-        //{
-        //    get { return (ObservableCollection<GradientStop>) GetValue(GradientsAllProperty); }
-        //    set { SetValue(GradientsAllProperty, value); }
-        //}
-
-        //internal static readonly DependencyProperty GradientsAllProperty =
-        //    DependencyProperty.Register("GradientsAll", typeof (ObservableCollection<GradientStop>), typeof (ColorBox));
-
         internal ObservableCollection<GradientStop> GradientsInit
         {
             get { return (ObservableCollection<GradientStop>)GetValue(GradientsInitProperty); }
@@ -499,6 +499,24 @@ namespace ColorBox
 
         public ObservableCollection<GradientStop> GradientsAll;
         public ObservableCollection<GradientStop> GradientsAllInit;
+
+        public GradientStop LowInitGradient
+        {
+            get { return (GradientStop)GetValue(LowInitGradientProperty); }
+            set { SetValue(LowInitGradientProperty, value); }
+        }
+
+        public static readonly DependencyProperty LowInitGradientProperty = DependencyProperty.Register("LowInitGradient",
+            typeof(GradientStop), typeof(ColorBox));
+
+        public GradientStop HighInitGradient
+        {
+            get { return (GradientStop)GetValue(HighInitGradientProperty); }
+            set { SetValue(HighInitGradientProperty, value); }
+        }
+
+        public static readonly DependencyProperty HighInitGradientProperty = DependencyProperty.Register("HighInitGradient",
+            typeof(GradientStop), typeof(ColorBox));
 
         public Brush Brush
         {
@@ -786,7 +804,9 @@ namespace ColorBox
         internal void SetBrush()
         {
             if (!_UpdateBrush)
+            {
                 return;
+            }
 
             this._BrushSetInternally = true;
 
@@ -800,6 +820,7 @@ namespace ColorBox
             }
 
             var brush = new LinearGradientBrush();
+
             foreach (GradientStop g in GradientsAll)
             {
                 brush.GradientStops.Add(new GradientStop(g.Color, g.Offset));

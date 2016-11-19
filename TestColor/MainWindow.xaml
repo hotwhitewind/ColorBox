@@ -12,7 +12,13 @@
 
         <Button Grid.Column="0" Background="{Binding Brush, ElementName=CB}" Content="TestButton" BorderThickness="3"/>
         <Grid Grid.Column="1">
-            <home:ColorBox HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="CB" Margin="38,0,-391,14" Orientation="Horizontal" Height="298">
+            <home:ColorBox HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="CB" Margin="47,0,-400,15" Orientation="Horizontal" Height="298">
+                <home:ColorBox.HighInitGradient>
+                    <GradientStop Color="Transparent" Offset="0.8"/>
+                </home:ColorBox.HighInitGradient>
+                <home:ColorBox.LowInitGradient>
+                    <GradientStop Color="Transparent" Offset="0.2"/>
+                </home:ColorBox.LowInitGradient>
                 <home:ColorBox.Brush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF000000" Offset="0"/>

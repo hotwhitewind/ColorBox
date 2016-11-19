@@ -11,6 +11,8 @@ namespace TestColor
         public MainWindow()
         {
             InitializeComponent();
+            CB.HighInitGradient.Offset = 1;
+            CB.LowInitGradient.Offset = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
