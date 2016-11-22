@@ -76,8 +76,8 @@ namespace ColorBox
                 //GradientsInit.Add(lgb.GradientStops.First(c => c.Offset == maxOffset));
 
 
-                GradientsInit.Add(new GradientStop(LowInitGradient.Color, LowInitGradient.Offset));
-                GradientsInit.Add(new GradientStop(HighInitGradient.Color, HighInitGradient.Offset));
+                GradientsInit.Add(LowInitGradient);
+                GradientsInit.Add(HighInitGradient);
                 //для вычитания границ из общего градиента
                 //GradientsAll.Remove(lgb.GradientStops.First(c => c.Offset == minOffset));
                 //GradientsAll.Remove(lgb.GradientStops.First(c => c.Offset == maxOffset));
@@ -102,8 +102,10 @@ namespace ColorBox
                         this.GradientsAll.Add(new GradientStop(Colors.Green, 0.5));
                         //////////////////////////////////////////////////////////
                         this.GradientsInit = new ObservableCollection<GradientStop>();
-                        this.GradientsInit.Add(new GradientStop(Colors.Transparent, 0));
-                        this.GradientsInit.Add(new GradientStop(Colors.Transparent, 1));
+                        LowInitGradient = new GradientStop(Colors.Transparent, 0);
+                        HighInitGradient = new GradientStop(Colors.Transparent, 1);
+                        this.GradientsInit.Add(LowInitGradient);
+                        this.GradientsInit.Add(HighInitGradient);
                         this.Gradients = new ObservableCollection<GradientStop>();
                         foreach (var grad in GradientsAll)
                         {
