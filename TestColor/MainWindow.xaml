@@ -17,27 +17,27 @@
                     <GradientStop Color="Transparent" Offset="1"/>
                 </home:ColorBox.HighInitGradient>
                 <home:ColorBox.LowInitGradient>
-                    <GradientStop Color="Transparent" Offset="0"/>
+                    <GradientStop Color="Transparent" Offset="0.2"/>
                 </home:ColorBox.LowInitGradient>
                 <home:ColorBox.Brush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF000000" Offset="0"/>
-                        <GradientStop Color="#FF000000" Offset="0.1111"/>
-                        <GradientStop Color="#FF400040" Offset="0.1111"/>
-                        <GradientStop Color="#FF800080" Offset="0.2222"/>
-                        <GradientStop Color="#FF000040" Offset="0.2222"/>
-                        <GradientStop Color="#FF0000A0" Offset="0.3333"/>
-                        <GradientStop Color="#FF0080C0" Offset="0.3333"/>
-                        <GradientStop Color="#FF00FFFF" Offset="0.4444"/>
-                        <GradientStop Color="#FF0080C0" Offset="0.4444"/>
-                        <GradientStop Color="#FF00FF00" Offset="0.5555"/>
-                        <GradientStop Color="#FF808000" Offset="0.5555"/>
-                        <GradientStop Color="#FFFFFF00" Offset="0.6666"/>
-                        <GradientStop Color="#FF804000" Offset="0.6666"/>
-                        <GradientStop Color="#FFFF8000" Offset="0.7777"/>
-                        <GradientStop Color="#FF800000" Offset="0.7777"/>
-                        <GradientStop Color="#FFFF0000" Offset="0.8888"/>
-                        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="0.3"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="0.3777"/>
+                        <GradientStop Color="#FF000000" Offset="0.3777"/>
+                        <GradientStop Color="#FF400040" Offset="0.45554"/>
+                        <GradientStop Color="#FF800080" Offset="0.53331"/>
+                        <GradientStop Color="#FF000040" Offset="0.53331"/>
+                        <GradientStop Color="#FF0000A0" Offset="0.611"/>
+                        <GradientStop Color="#FF0080C0" Offset="0.611"/>
+                        <GradientStop Color="#FF00FFFF" Offset="0.68885"/>
+                        <GradientStop Color="#FF008000" Offset="0.68885"/>
+                        <GradientStop Color="#FF00FF00" Offset="0.76662"/>
+                        <GradientStop Color="#FF808000" Offset="0.76662"/>
+                        <GradientStop Color="#FFFFFF00" Offset="0.84439"/>
+                        <GradientStop Color="#FF804000" Offset="0.84439"/>
+                        <GradientStop Color="#FFFF8000" Offset="0.92216"/>
+                        <GradientStop Color="#FF800000" Offset="0.92216"/>
+                        <GradientStop Color="#FFFF0000" Offset="1"/>
                     </LinearGradientBrush>
                 </home:ColorBox.Brush>
             </home:ColorBox>

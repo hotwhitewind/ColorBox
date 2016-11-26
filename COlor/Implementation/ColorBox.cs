@@ -116,19 +116,19 @@ namespace ColorBox
                 }
             }
 
-            var gradients = this.GradientsAll;
-            var minGrOff = this.GradientsInit.Min((c) => c.Offset);
-            var maxGrOff = this.GradientsInit.Max((c) => c.Offset);
+            //var gradients = this.GradientsAll;
+            //var minGrOff = this.GradientsInit.Min((c) => c.Offset);
+            //var maxGrOff = this.GradientsInit.Max((c) => c.Offset);
 
-            var initMinGrOff = GradientsAll.Min((c) => c.Offset);
-            var initMaxGrOff = GradientsAll.Max((c) => c.Offset);
+            //var initMinGrOff = GradientsAll.Min((c) => c.Offset);
+            //var initMaxGrOff = GradientsAll.Max((c) => c.Offset);
 
-            for (int i = 0; i < gradients.Count; i++)
-            {
-                gradients[i].Offset = minGrOff +
-                                      (gradients[i].Offset - initMinGrOff) * (maxGrOff - minGrOff) /
-                                      (initMaxGrOff - initMinGrOff);
-            }
+            //for (int i = 0; i < gradients.Count; i++)
+            //{
+            //    gradients[i].Offset = minGrOff +
+            //                          (gradients[i].Offset - initMinGrOff) * (maxGrOff - minGrOff) /
+            //                          (initMaxGrOff - initMinGrOff);
+            //}
 
             SetBrush();
         }
